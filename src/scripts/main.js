@@ -14,7 +14,11 @@ const populations = Array.from(populationElements)
 
 const total = populations.reduce((sum, value) => sum + value, 0);
 
-const average = total / populations.length;
+let average = total / populations.length;
+
+if (populations.length === 0) {
+  average = 0;
+}
 
 const formattedTotal = total.toLocaleString();
 
