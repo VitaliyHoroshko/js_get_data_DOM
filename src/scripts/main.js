@@ -1,20 +1,23 @@
 'use strict';
 
 const populationElements = document.getElementsByClassName('population');
+const populations = Array.from(populationElements)
 
-const populations = Array.from(populationElements).map((item) => {
-  const text = item.textContent.trim();
-  const cleaned = text.replace(/,/g, '');
-  const number = Number(cleaned);
+  .map((item) => {
+    const text = item.textContent.trim();
+    const cleaned = text.replace(/,/g, '');
+    const number = Number(cleaned);
 
-  return number;
-});
+    return !isNaN(number) ? number : null;
+  })
+  .filter((num) => num !== null);
 
 const total = populations.reduce((sum, value) => sum + value, 0);
 
 const average = total / populations.length;
 
 const formattedTotal = total.toLocaleString();
+
 const formattedAverage = Math.round(average).toLocaleString();
 
 document.querySelector('.total-population').textContent = formattedTotal;
